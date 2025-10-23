@@ -9,7 +9,7 @@ public class PlayerEventController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("f"))
+        if (Input.GetKey("e"))
         {
             if(interactEvObs.Count > 0)
             {
@@ -63,13 +63,15 @@ public class PlayerEventController : MonoBehaviour
 
     private void HighlightEvOb()
     {
-        interactEvObs[interactEvObs.Count -1].transform.Find("HighlightSprite").gameObject.SetActive(true);
+        interactEvObs[interactEvObs.Count - 1].transform.Find("HighlightSprite").gameObject.SetActive(true);
+        transform.Find("ButtonPopup").gameObject.SetActive(true);
         //targetOb.transform.Find("HighlightSprite").gameObject.SetActive(true);
     }
     
     private void DehighlightEvOb()
     {
-        interactEvObs[interactEvObs.Count -1].transform.Find("HighlightSprite").gameObject.SetActive(false);
+        interactEvObs[interactEvObs.Count - 1].transform.Find("HighlightSprite").gameObject.SetActive(false);
+        transform.Find("ButtonPopup").gameObject.SetActive(false);
         //targetOb.transform.Find("HighlightSprite").gameObject.SetActive(false);
     }
 }

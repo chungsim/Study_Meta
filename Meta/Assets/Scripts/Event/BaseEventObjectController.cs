@@ -10,6 +10,7 @@ public class BaseEventObjectController : MonoBehaviour
     private bool _isActive;
     public UnityEvent<bool> onStateChanged;
     public bool IsActive
+
     {
         get => _isActive;
         set
@@ -17,7 +18,7 @@ public class BaseEventObjectController : MonoBehaviour
             if (_isActive == value) return;
 
             _isActive = value;
-           onStateChanged?.Invoke(_isActive);
+            onStateChanged?.Invoke(_isActive);
         }
     }
 
