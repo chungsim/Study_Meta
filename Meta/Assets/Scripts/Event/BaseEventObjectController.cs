@@ -24,7 +24,7 @@ public class BaseEventObjectController : MonoBehaviour
 
     [SerializeField] public EvObType Type;
 
-    protected virtual void ActiveEvent()
+    public virtual void ActiveEvent()
     {
         if (_isActive)
         {

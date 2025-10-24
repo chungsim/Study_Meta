@@ -32,7 +32,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
-        Rotate(lookDirection);
+        Rotate(movementDirection);
     }
 
     protected virtual void FixedUpdate()
@@ -66,11 +66,19 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        characterRenderer.flipX = isLeft;
+        if (direction.x > 0)
+        {
+            characterRenderer.flipX = false;
+        }
+        else if (direction.x < 0)
+        {
+            characterRenderer.flipX = true;
+        }
+
 
         if (weapomPivot != null)
         {
-            weapomPivot.rotation = Quaternion.Euler(0f, 0f, rotZ);
+            //weapomPivot.rotation = Quaternion.Euler(0f, 0f, rotZ);
         }
     }
 
