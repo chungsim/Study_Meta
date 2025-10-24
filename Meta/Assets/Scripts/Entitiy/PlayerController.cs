@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PlayerController : BaseController
 {
-    private Camera camera;
+    private Camera playerCamera;
 
     protected override void Start()
     {
         base.Start();
-        camera = Camera.main;
+        playerCamera = Camera.main;
     }
 
     protected override void HandleAction()
@@ -20,7 +20,7 @@ public class PlayerController : BaseController
         movementDirection = new Vector2(horizontal, vertical).normalized;
 
         Vector2 mousePosition = Input.mousePosition;
-        Vector2 worldPos = camera.ScreenToWorldPoint(mousePosition);
+        Vector2 worldPos = playerCamera.ScreenToWorldPoint(mousePosition);
         lookDirection = (worldPos - (Vector2)transform.position);
 
         if (lookDirection.magnitude < .9f)

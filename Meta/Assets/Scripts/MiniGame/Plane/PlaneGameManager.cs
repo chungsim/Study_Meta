@@ -34,12 +34,13 @@ public class PlaneGameManager : MonoBehaviour
     public void GameStart()
     {
         uiManager.SetStart();
-        StartCoroutine("StartCountdown", 3);       
+        StartCoroutine("StartCountdown", 4);       
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
+        SaveScore();
         uiManager.SetRestart();
     }
 
@@ -61,23 +62,35 @@ public class PlaneGameManager : MonoBehaviour
 
     IEnumerator StartCountdown(int sec)
     {
-        
-        float time = 0.0f;
+
+        float time = sec;
 
         Debug.Log("Couroutine Start");
 
-        while (time < sec)
+        while (time > 0)
         {
-            time += Time.deltaTime;
+            time -= Time.deltaTime;
 
-            if (time > sec)
+            if (time < 0)
             {
-                time = sec;
+                time = 0;
             }
 
             uiManager.CountDownText(time);
             yield return null;
         }
-        player.PausePlayerToggle();     
+        player.PausePlayerToggle();
+    }
+    
+    private void SaveScore()
+    {
+        int bestScore = PlayerPrefs.GetInt("PlaneGameRecord", 0);
+
+        if (currentScore > bestScore)
+        {
+            bestScore = currentScore;
+        }
+
+        PlayerPrefs.SetInt("PlaneGameRecord", bestScore);
     }
 }

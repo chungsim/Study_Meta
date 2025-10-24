@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
     public GameObject exitButton;
     public GameObject startButton;
 
+    public GameObject gameDescript;
+
+    public TextMeshProUGUI countText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +52,8 @@ public class UIManager : MonoBehaviour
         uiBack.SetActive(true);
         bestScoreText.gameObject.SetActive(true);
         bestScoreText_.gameObject.SetActive(true);
+
+        bestScoreText.text = PlayerPrefs.GetInt("PlaneGameRecord", 0).ToString();
     }
 
     public void UpdateScore(int score)
@@ -58,10 +64,16 @@ public class UIManager : MonoBehaviour
     public void SetStart()
     {
         startButton.SetActive(false);
+        gameDescript.gameObject.SetActive(false);
+        countText.gameObject.SetActive(true);
     }
 
     public void CountDownText(float sec)
     {
-        scoreText.text = sec.ToString("n2");
+        countText.text = ((int)sec).ToString();
+        if(sec <= 0)
+        {
+            countText.gameObject.SetActive(false);
+        }
     }
 }
