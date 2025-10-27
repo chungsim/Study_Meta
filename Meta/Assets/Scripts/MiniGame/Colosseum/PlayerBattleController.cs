@@ -8,7 +8,7 @@ public class PlayerBattleController : MonoBehaviour
     public GameObject weaponPivot;
     public SpriteRenderer charactetRenderer;
 
-    public float attackCooldown = 0.1f;
+    public float attackCooldown = 0.05f;
 
     public bool isAttacking = false;
     public float attackPerSec = 1.0f;
@@ -16,6 +16,7 @@ public class PlayerBattleController : MonoBehaviour
     private Quaternion baseQuaternion;
 
     public int hp = 10;
+    public int maxHp = 10;
     public Sprite hpForward;
 
     public KeyCode keyCode;
@@ -33,7 +34,7 @@ public class PlayerBattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(keyCode) && attackCooldown <= 0 && !isAttacking)
+        if (Input.GetKeyDown(keyCode) && attackCooldown <= 0 && !isAttacking && ColosseumGameManager.Instance.isGaming)
         {
             StartCoroutine(AttackAction());
         }
@@ -83,19 +84,21 @@ public class PlayerBattleController : MonoBehaviour
         }
 
         isAttacking = false;
-        attackCooldown = 1f;
+        attackCooldown = 0.1f;
 
     }
     
     public void GetDamage(int damage)
     {
         hp -= damage;
+        if (hp < 0) hp = 0;
+        ColosseumUIManager.Instance.UpdateHPBar();
         Debug.Log($"player get {damage} damage! remain hp = {hp}");
 
-        if(hp <= 0)
+        if (hp <= 0)
         {
             hp = 0;
-            //게임 종료 처리
+            ColosseumGameManager.Instance.EndGame();
         }
     }
 }
