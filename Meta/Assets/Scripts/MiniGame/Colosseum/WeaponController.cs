@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
-        if(weaponDamage == null)
+        if(weaponDamage < 0)
         {
             Debug.Log($"{this.gameObject.name} weapon has no damage!");
             weaponDamage = 0;

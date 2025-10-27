@@ -13,7 +13,7 @@ public class ColosseumGameManager : MonoBehaviour
 
     public bool isGaming = true;
 
-     public static ColosseumGameManager Instance { get; private set; }
+    public static ColosseumGameManager Instance { get; private set; }
     void Awake()
     {
         if (Instance == null)
