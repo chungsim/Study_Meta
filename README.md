@@ -18,8 +18,6 @@ Unity 2022.3.62f2 버전을 사용하였습니다.
 ## 2. 기능 설명
 1. 이벤트 오브젝트 상호작용
 <img width="676" height="352" alt="메인" src="https://github.com/user-attachments/assets/fc62eef8-a73a-4898-a29e-3a40ad5ec12c" />
-\n
-<center>(이벤트 오브젝트)</center>
 
 상호가용 가능한 이벤트 오브젝트의 모음입니다.
 
@@ -28,7 +26,6 @@ Unity 2022.3.62f2 버전을 사용하였습니다.
 <center>
 <img width="297" height="218" alt="오브젝트 상호작용1" src="https://github.com/user-attachments/assets/2fe0fb17-a349-40f4-8946-ceb48f0e2f85" />
 </center>
-<center>(이벤트 오브젝트 접근 시 하이라이트)</center>
 모든 이벤트 오브젝트는 플레이어가 접근할 시 하이라이트 스프라이트가 뜨도록 하였습니다.
 이를 통해 한번에 2가지 이상의 오브젝트에 상호작용 가능한 상태가 되더라고 현재 상호작용 중인 오브젝트를 구별할 수 있습니다.
 하이라이트와 상호작용 버틍니 뜬 상태로 'e'를 입력하면 해당 오브젝트의 기능이 작동합니다.
