@@ -18,7 +18,7 @@ Unity 2022.3.62f2 버전을 사용하였습니다.
 ## 2. 기능 설명
 1. 이벤트 오브젝트 상호작용
 <img width="676" height="352" alt="메인" src="https://github.com/user-attachments/assets/fc62eef8-a73a-4898-a29e-3a40ad5ec12c" />
-
+\n
 <center>(이벤트 오브젝트)</center>
 
 상호가용 가능한 이벤트 오브젝트의 모음입니다.
