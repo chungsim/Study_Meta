@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BaseController : MonoBehaviour
 {
@@ -18,6 +21,8 @@ public class BaseController : MonoBehaviour
 
     private Vector2 konokback = Vector2.zero;
     private float knockbackDuration = 0.0f;
+
+    private bool isRight = true;
 
     protected virtual void Awake()
     {
@@ -49,7 +54,7 @@ public class BaseController : MonoBehaviour
 
     }
 
-    private void Movement(Vector2 direction)
+    protected virtual void Movement(Vector2 direction)
     {
         direction = direction * 5;
         if (knockbackDuration > 0.0f)
@@ -69,10 +74,12 @@ public class BaseController : MonoBehaviour
         if (direction.x > 0)
         {
             characterRenderer.flipX = false;
+            rotateCustomChilds();
         }
         else if (direction.x < 0)
         {
             characterRenderer.flipX = true;
+            rotateCustomChilds();
         }
 
 
@@ -86,6 +93,25 @@ public class BaseController : MonoBehaviour
     {
         knockbackDuration = duration;
         konokback = -(other.position - transform.position).normalized * power;
+    }
+
+    private void rotateCustomChilds()
+    {
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        if(allChildren.Length > 0 && characterRenderer.flipX == isRight)
+        {
+            foreach(Transform child in allChildren)
+            {
+                if (child.gameObject.CompareTag("Custom"))
+                {
+                    Vector3 revPos = new Vector3(child.localPosition.x * -1f, child.localPosition.y, child.localPosition.z);
+                    child.localPosition = revPos;
+                    child.GetComponent<SpriteRenderer>().flipX = !child.GetComponent<SpriteRenderer>().flipX;
+                    child.rotation = Quaternion.Euler(0, 0, -child.eulerAngles.z);
+                    isRight = !isRight;
+                }
+            }
+        } 
     }
 
 }

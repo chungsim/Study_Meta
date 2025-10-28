@@ -8,6 +8,8 @@ public class PlayerCustomManager : MonoBehaviour
     public List<Animation> petList;
     public List<Sprite> ItemList;
 
+    public List<Sprite> RideList;
+
     private GameObject player;
 
     public static PlayerCustomManager Instance { get; private set; }
@@ -39,6 +41,12 @@ public class PlayerCustomManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("ItemNum", i);
         player.transform.Find("CustomItem").GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
+    public void SetRide(int i)
+    {
+        PlayerPrefs.SetInt("ItemNum", i);
+        player.transform.Find("CustomRide").GetComponent<SpriteRenderer>().sprite = RideList[i];
     }
     
 }

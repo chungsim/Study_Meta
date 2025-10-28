@@ -7,6 +7,9 @@ public class PlayerController : BaseController
 {
     private Camera playerCamera;
 
+    [SerializeField] private bool isRidding;
+    [SerializeField] private float riddingSpeed;
+
     protected override void Start()
     {
         base.Start();
@@ -31,5 +34,44 @@ public class PlayerController : BaseController
         {
             lookDirection = lookDirection.normalized;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (isRidding)
+            {
+                OffRide();
+                PlayerCustomManager.Instance.SetRide(0);
+            }
+            else
+            {
+                GetRide(0.5f);
+                PlayerCustomManager.Instance.SetRide(1);
+            }
+        }
+    }
+
+    protected override void Movement(Vector2 direction)
+    {
+        if (isRidding)
+        {
+            direction = direction * 5;
+            _rigidbody.velocity = direction * (riddingSpeed + 1f);
+        }
+        else
+        {
+            base.Movement(direction);
+        }
+    }
+
+    public void GetRide(float speed)
+    {
+        isRidding = true;
+        riddingSpeed = speed;
+    }
+    
+    public void OffRide()
+    {
+        isRidding = false;
+        riddingSpeed = 0f;
     }
 }

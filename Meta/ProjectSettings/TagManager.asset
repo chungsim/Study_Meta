@@ -7,6 +7,7 @@ TagManager:
   - EventObject
   - Obstacle
   - BackGround
+  - Custom
   layers:
   - Default
   - TransparentFX
